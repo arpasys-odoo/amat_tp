@@ -1,0 +1,158 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_edi_order" model="mail.template">
+            <field name="name">blank_module</field>
+            <field name="model_id" ref="ordre_intervention.model_ordre_intervention_ordre_intervention"/>
+            <field name="subject">blank_module - {{ object.company_id.name }} (Ref {{ object.reference or 'n/a' }})</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Utilisé pour envoyer l'blank_module aux clients</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Bonjour,
+                        <span style="font-weight: bold;" t-out="object.partner_id.name or ''">John Doe</span>
+                        <br/>
+                        <br/>
+                    blank_module
+                        <span style="font-weight: bold;" t-out="object.reference or ''">S00052</span>
+                        <br/>
+                        <span style="font-weight: bold;">Intitulé de l'ordre : </span>
+                        <span t-out="object.name or ''">Intitulé</span>
+                        <br/>
+                        <span style="font-weight: bold;">Marque du bateau : </span>
+                        <span t-out="object.marque_bateau or ''">Marque du bateau</span>
+                        <br/>
+                        <span style="font-weight: bold;">Numéro du moteur : </span>
+                        <span t-out="object.numero_moteur or ''">Numéro du moteur</span>
+                        <br/>
+                        <span style="font-weight: bold;">Numéro de la place : </span>
+                        <span t-out="object.numero_place or ''">Numéro de la place</span>
+                        <br/>
+                        <br/>
+                        <span t-out="object.description or ''">Description de blank_module</span>
+                        <br/>
+                        <br/>
+                    Pour confirmer votre blank_module, veuillez cliquer sur le lien suivant pour accéder à votre portail client et effectuer une signature électronique.
+                        <br/>
+                        <div>
+                            <a t-if="object.signature_link" t-att-href="object.signature_link">Lien vers le portail client</a>
+                        </div>
+                        <br/>
+                        <br/>
+                    N’hésitez pas à nous contacter si vous avez des questions.
+                        <t t-if="not is_html_empty(object.user_id.signature)">
+                            <br/>
+                            <br/>
+                            <t t-out="object.user_id.signature or ''">--                                <br/>
+                    Signature</t>
+                        </t>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_order_cancellation" model="mail.template">
+            <field name="name">Annulation blank_module</field>
+            <field name="model_id" ref="ordre_intervention.model_ordre_intervention_ordre_intervention"/>
+            <field name="subject">Annulation blank_module - {{ object.company_id.name }} (Ref {{ object.reference or 'n/a' }})</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Utilisé pour informer que l'blank_module à été annulé</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Bonjour, <t t-out="object.partner_id.name or ''">John Doe</t>,
+                        <br/>
+                        <br/>
+                    Votre blank_module
+                        <strong t-out="object.reference or ''">S00052</strong>
+                        <br/>
+                        <span style="font-weight: bold;">Marque du bateau : </span>
+                        <span t-out="object.marque_bateau or ''">Marque du bateau</span>
+                        <br/>
+                        <span style="font-weight: bold;">Numéro du moteur : </span>
+                        <span t-out="object.numero_moteur or ''">Numéro du moteur</span>
+                        <br/>
+                        <span style="font-weight: bold;">Numéro de la place : </span>
+                        <span t-out="object.numero_place or ''">Numéro de la place</span>
+                        <br/>
+                        <br/>
+                        <span t-out="object.description or ''">Description de l'blank_module</span>
+                        <br/>
+                        <br/>
+                        <span style="font-weight: bold;">Intitulé de l'ordre : </span>
+                        <span t-out="object.name or ''">Intitulé</span>
+                    a été annulé
+                        <br/>
+                        <br/>
+                    N’hésitez pas à nous contacter si vous avez des questions.
+                        <br/>
+                        <br/>
+                        <t t-out="object.user_id.signature or ''">--                                <br/>
+                    Signature</t>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_order_confirmation" model="mail.template">
+            <field name="name">Confirmation blank_module</field>
+            <field name="model_id" ref="ordre_intervention.model_ordre_intervention_ordre_intervention"/>
+            <field name="subject">Confirmation blank_module - {{ object.company_id.name }} (Ref {{ object.reference or 'n/a' }})</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Utilisé pour confirmer l'blank_module aux clients</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Bonjour,
+                        <span style="font-weight: bold;" t-out="object.partner_id.name or ''">John Doe</span>
+                        <br/>
+                        <br/>
+                    L'blank_module 
+                        <span style="font-weight:bold;" t-out="object.reference or ''">S00049</span>
+                        <br/>
+                        <span style="font-weight: bold;">Marque du bateau : </span>
+                        <span t-out="object.marque_bateau or ''">Marque du bateau</span>
+                        <br/>
+                        <span style="font-weight: bold;">Numéro du moteur : </span>
+                        <span t-out="object.numero_moteur or ''">Numéro du moteur</span>
+                        <br/>
+                        <span style="font-weight: bold;">Numéro de la place : </span>
+                        <span t-out="object.numero_place or ''">Numéro de la place</span>
+                        <br/>
+                        <br/>
+                        <span t-out="object.description or ''">Description de l'blank_module</span>
+                        <br/>
+                        <br/>
+                        <span style="font-weight: bold;">Intitulé de l'ordre : </span>
+                        <span t-out="object.name or ''">Intitulé</span>
+                        <t t-if="object.state == 'sign'">
+                    a été confirmé.
+                        <br/>
+                    Merci de votre confiance !
+                        </t>
+                        <br/>
+                        <br/>
+                    N’hésitez pas à nous contacter si vous avez des questions.
+                        <t t-if="not is_html_empty(object.user_id.signature)">
+                            <br/>
+                            <br/>
+                            <t t-out="object.user_id.signature or ''">--                                <br/>
+                    Signature</t>
+                        </t>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo> -->

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_bon_intervention">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Header du bon d'intervention -->
+                        <div style="padding: 4px; text-align: center;">
+                            <h2>Bon d'intervention #<span t-field="doc.name"/>
+                            </h2>
+                        </div>
+
+                        <!-- Section CLIENT -->
+                        <div style="margin-top: 20px; padding: 8px; background-color: black; color: white;">
+                            <h3 style="margin-bottom: 0;">CLIENT</h3>
+                        </div>
+                        <div style="border: 1px solid #eee; padding: 8px;">
+                            <p>
+                                <strong>Lieu de l'intervention :</strong>
+                                <span t-field="doc.lieu_intervention"/>
+                            </p>
+                            <p style="line-height: 1px;">
+                                <span style="line-height: 1px;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                            </p>
+                        </div>
+
+                        <!-- Section RENSEIGNEMENTS MACHINE -->
+                        <div style="margin-top: 20px; padding: 8px; background-color: black; color: white;">
+                            <h3 style="margin-bottom: 0;">RENSEIGNEMENTS MACHINE</h3>
+                        </div>
+                        <div style="border: 1px solid #eee; padding: 8px;">
+                            <!-- Contenu de la section -->
+                            <p style="line-height: 1px; margin-top: 10px;">
+                                <strong style="line-height: 1px;">Type de machine :</strong>
+                                <span t-field="doc.type_machine" style="line-height: 1px;"/>
+                            </p>
+                            <p style="line-height: 1px;">
+                                <strong style="line-height: 1px;">N° de série :</strong>
+                                <span t-field="doc.num_serie" style="line-height: 1px;"/>
+                            </p>
+                            <p style="line-height: 1px;">
+                                <strong style="line-height: 1px;">Heures :</strong>
+                                <span t-esc="doc.get_hours_minutes(doc.heures)" style="line-height: 1px;"/>
+                            </p>
+                            <p style="line-height: 1px;">
+                                <strong style="line-height: 1px;">Date de la panne :</strong>
+                                <span t-field="doc.date_panne" style="line-height: 1px;"/>
+                            </p>
+                            <p style="line-height: 1px;">
+                                <strong style="line-height: 1px;">Date de fin de réparation :</strong>
+                                <span t-field="doc.date_fin_reparation" style="line-height: 1px;"/>
+                            </p>
+                        </div>
+
+                        <!-- Section INTERVENTION -->
+                        <div style="margin-top: 20px; padding: 8px; background-color: black; color: white;">
+                            <h3 style="margin-bottom: 0;">INTERVENTION</h3>
+                        </div>
+                        <div style="border: 1px solid #eee; padding: 8px;">
+                            <!-- Contenu de la section -->
+                            <p>
+                                <span t-field="doc.detail_panne_intervention"/>
+                            </p>
+                            <p>
+                                <strong>Fourniture :</strong>
+                                <span t-field="doc.fourniture"/>
+                            </p>
+                            <p>
+                                <strong>Nombre d'heures de main d'œuvre TOTAL :</strong>
+                                <span t-esc="doc.get_hours_minutes(doc.total_heure)" style="line-height: 1px;"/>
+                            </p>
+                        </div>
+
+                        <!-- Footer avec les informations de la société -->
+                        <div style="margin-top: 20px; padding: 8px; text-align: center;">
+                            <p style="line-height: 1px;">
+                                <strong style="line-height: 1px;">SOCIÉTÉ AMAT TP -</strong>
+                                <span style="line-height: 1px;">1 rue Émile Levassor, ZI Croix Sud - 11100 NARBONNE</span>
+                            </p>
+                            <p style="line-height: 1px;">
+                                <strong style="line-height: 1px;">Tél. : 04 68 42 22 87 -</strong>
+                                <span style="line-height: 1px;">Fax : 04 68 42 05 71</span>
+                                <strong style="line-height: 1px;">-</strong>
+                                <strong style="line-height: 1px;">nouvelleamat@orange.fr</strong>
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

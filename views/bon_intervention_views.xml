@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record model="ir.ui.view" id="amat_tp.form_view">
+        <field name="name">amat_tp.form_view</field>
+        <field name="model">bon_intervention.bon_intervention</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- <header>
+
+                </header> -->
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group class="bon_intervention_titre">
+                        <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="lieu_intervention"/>
+                        <field name="type_machine"/>
+                        <field name="num_serie"/>
+                        <field name="heures" widget="float_time"/>
+                    </group>
+                    <group class="bon_intervention_titre">
+                        <field name="date_panne"/>
+                        <field name="date_fin_reparation"/>
+                        <field name="detail_panne_intervention"/>
+                        <field name="fourniture"/>
+                        <field name="total_heure" widget="float_time"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="amat_tp.tree_view">
+        <field name="name">amat_tp.tree_view</field>
+        <field name="model">bon_intervention.bon_intervention</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date_order"/>
+                <field name="lieu_intervention"/>
+                <field name="type_machine"/>
+                <field name="num_serie"/>
+                <field name="total_heure"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_amat_tp" name="Bon d'intervention"/>
+
+    <record model="ir.actions.act_window" id="action_amat_tp_list">
+        <field name="name">Liste des bons d'intervention</field>
+        <field name="res_model">bon_intervention.bon_intervention</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_amat_tp_list" name="Liste des ordres d'intervention" parent="menu_amat_tp" action="action_amat_tp_list"/>
+</odoo>

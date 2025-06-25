@@ -1,0 +1,9 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="blank_module_default_confirmation_template" model="ir.config_parameter">
+        <field name="key">blank_module.order_default_confirmation_template</field>
+        <field name="value" ref="blank_module.mail_template_order_confirmation"/>
+    </record>
+
+</odoo> -->
